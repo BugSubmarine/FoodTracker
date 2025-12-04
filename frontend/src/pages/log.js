@@ -96,6 +96,8 @@ const Log = () => {
             <tr>
               <th>Date</th>
               <th>Meal</th>
+              <th>Calories (kCal)</th>
+              <th>Protein (g)</th>
             </tr>
           </thead>
           <tbody>
@@ -107,6 +109,8 @@ const Log = () => {
                   })}
                 </td>
                 <td>{log.meal}</td>
+                <td>{mealOptions.find(meal => meal.name === log.meal)?.calories || "N/A"}</td>
+                <td>{mealOptions.find(meal => meal.name === log.meal)?.protein || "N/A"}</td>
               </tr>
             ))}
           </tbody>
