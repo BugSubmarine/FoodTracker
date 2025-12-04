@@ -32,7 +32,8 @@ app.get('/', (req, res) => {
 app.use('/api/meals', require('./routes/meals'));
 app.use("/api/tracker", require("./routes/logs"));
 app.use("/api/loggings", require("./routes/tracker"));
-
+app.use("/api/setGoal", require("./routes/setGoal"));
+app.use("/api/returnGoal", require("./routes/returnGoal"));
 
 // listen for requests
 // access the port specified in .env

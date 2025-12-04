@@ -1,19 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const Tracker = require("../models/tracker");
+const User = require("../models/user");
 
 router.post("/", async (req, res) => {
   try {
-    const {userId, meal, date} = req.body;
+    const {userId, goal} = req.body;
     console.log(req.body);
     
-    const newLog = new Tracker({
-      username: userId,
-      date: date,
-      meal: meal
-    });
-    await newLog.save();
-    res.status(201).json(newLog);
+    await User.updateOne(
+    { username: userId },
+    { $set: { weeklyGoal: goal } }
+    );
+
+    res.status(201).json({ message: "Goal updated successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

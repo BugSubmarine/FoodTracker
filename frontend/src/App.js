@@ -3,6 +3,7 @@ import Login from "./pages/login";
 import Log from "./pages/log";
 import Dashboard from "./pages/dashboard";
 import NotFound from "./pages/notFound";
+import Goals from "./pages/goal";
 
 function App() {
   return (
@@ -11,13 +12,15 @@ function App() {
         <nav>
           <Link to="/login">Login</Link> |{" "}
           <Link to="/log">Log</Link> |{" "}
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link> |{" "}
+          <Link to="/goal">Goals</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/log" element={<Log />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/goal" element={<Goals />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
