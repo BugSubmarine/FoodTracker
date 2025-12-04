@@ -5,19 +5,47 @@ const Log = () => {
     const [selectedMeal, setSelectedMeal] = useState("");
     const [date, setDate] = useState("");
 
-useEffect(() => {
-    fetch("http://localhost:4000/api/meals")
-    .then((res) => res.json())
-    .then((data) => {
-      setMealOptions(data);
-    })
-    .catch((err) => console.error("Error fetching meals:", err));
-}, []);
+    useEffect(() => {
+        fetch("http://localhost:4000/api/meals")
+        .then((res) => res.json())
+        .then((data) => {
+          setMealOptions(data);
+        })
+        .catch((err) => console.error("Error fetching meals:", err));
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const userId = "john_doe"; // Replace with actual user ID logic
+        const newTracker = {
+          userId: userId, 
+          meal: selectedMeal,
+          date: date
+        };
+
+        console.log("Submitting new tracker:", newTracker);
+
+        try {
+          const res = await fetch("http://localhost:4000/api/tracker", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newTracker)
+          });
+          const data = await res.json();
+          console.log("Meal logged successfully:", data);
+
+          setSelectedMeal("");
+          setDate("");
+        }
+        catch (err) {
+          console.error("Error logging meal:", err);
+        }
+    };
 
     return (
     <div className="log-page">
       <h2>Log a Meal for Yourself</h2>
-      <form method = "POST" action = "/logMeal">
+      <form onSubmit={handleSubmit}>
         <label>
           Meal:
           <select
@@ -26,7 +54,7 @@ useEffect(() => {
           >
             <option value="">Select a meal</option>
             {mealOptions.map((meal) => (
-              <option key={meal._id} value={meal._id}>
+              <option key={meal._id} value={meal.name}>
                 {meal.name}
               </option>
             ))}
@@ -37,6 +65,8 @@ useEffect(() => {
           Date:
           <input
             type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </label>
         <br />

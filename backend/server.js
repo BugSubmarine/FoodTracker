@@ -21,6 +21,8 @@ app.use((req, res, next) => {
 });
 
 app.use(cors());
+app.use(express.json());
+
 
 // routes
 app.get('/', (req, res) => {
@@ -28,6 +30,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/meals', require('./routes/meals'));
+app.use("/api/tracker", require("./routes/logs"));
+app.use("/api/loggings", require("./routes/tracker"));
+
 
 // listen for requests
 // access the port specified in .env
