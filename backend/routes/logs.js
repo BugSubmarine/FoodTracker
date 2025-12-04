@@ -10,9 +10,10 @@ router.post("/", async (req, res) => {
     const mealDoc = await Meal.findOne({name: meal});
 
     const newLog = new Tracker({
-    username: userId,                                      
+    username: userId,     
+    date: date,                                 
     caloriesConsumed: mealDoc.calories,
-    date: date
+    proteinConsumed: mealDoc.protein
     });
     await newLog.save();
     res.status(201).json(newLog);
