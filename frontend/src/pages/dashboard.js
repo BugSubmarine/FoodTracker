@@ -11,6 +11,7 @@ const Dashboard = () => {
         circleHolder.appendChild(Calendar);
     }
 
+const Dashboard = ({username}) => {
     return (
         <div className="dashboard">
             <Header/>

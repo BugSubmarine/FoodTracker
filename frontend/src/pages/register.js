@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
-    const [username, setUsername] = useState("");
+const Register = ({ setUsername }) => {
+    const [inputUsername, setInputUsername] = useState("");
     const [storedUsername, setStoredUsername] = useState("");
     const [inputPassword, setInputPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -11,7 +11,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/returnUser?userId=${username}`)
+        axios.get(`http://localhost:4000/api/returnUser?userId=${inputUsername}`)
         .then((response) => {
             if (response.data && response.data.username) {
                 setStoredUsername(response.data.username);
@@ -22,12 +22,12 @@ const Register = () => {
         .catch((err) => {
             console.error("Error fetching username:", err);
         });
-    }, [username]);
+    }, [inputUsername]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (username === "") {
+        if (inputUsername === "") {
             setMessage("Username cannot be empty");
             return;
         }
@@ -41,7 +41,7 @@ const Register = () => {
         }
         else if (inputPassword === confirmPassword) {
             const newUser = {
-                userId: username, 
+                userId: inputUsername, 
                 password: inputPassword,
                 dailyGoal: null
             };
@@ -53,7 +53,8 @@ const Register = () => {
                 const response = await axios.post("http://localhost:4000/api/setUser", newUser);
                 console.log("Server response:", response.data);
 
-                setUsername("");
+                setUsername(inputUsername);
+                setInputUsername("");
                 setInputPassword("");
                 setConfirmPassword("");
 
@@ -73,8 +74,8 @@ const Register = () => {
         <label>
           Username: 
             <input type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={inputUsername}
+            onChange={(e) => setInputUsername(e.target.value)}
           />
         </label>
         <br />
