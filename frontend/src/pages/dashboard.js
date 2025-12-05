@@ -1,6 +1,16 @@
 import "../styles.css"
 import Header from "./navbar";
 const Dashboard = () => {
+    const Calendar = document.getElementById('Calendar');
+    for (let i = 0; i<31; i++){
+        const day = document.createElement('div');
+        const dayNumber = document.createElement('p');
+        day.className = 'gridbox-item';
+        dayNumber= `Day ${i}`;
+        circle.classList.add('1');
+        circleHolder.appendChild(Calendar);
+    }
+
     return (
         <div className="dashboard">
             <Header/>
@@ -21,29 +31,10 @@ const Dashboard = () => {
                     <h5>Saturday</h5>
                 </div>
 
-            <div className="gridbox-container">
+            <div className="gridbox-container" id="Calendar">
             {/* TO DO WORK ON MAKING THIS AN ARRAY OF DAYS */}
                 <div className="gridbox-item">Day 1</div>
-                <div className="gridbox-item">Day 2</div>
-                <div className="gridbox-item">Day 3</div>
-                <div className="gridbox-item">Day 4</div>
-                <div className="gridbox-item">Day 5</div>
-                <div className="gridbox-item">Day 6</div>
-                <div className="gridbox-item">Day 7</div>
-                <div className="gridbox-item">Day 1</div>
-                <div className="gridbox-item">Day 2</div>
-                <div className="gridbox-item">Day 3</div>
-                <div className="gridbox-item">Day 4</div>
-                <div className="gridbox-item">Day 5</div>
-                <div className="gridbox-item">Day 6</div>
-                <div className="gridbox-item">Day 7</div>
-                <div className="gridbox-item">Day 1</div>
-                <div className="gridbox-item">Day 2</div>
-                <div className="gridbox-item">Day 3</div>
-                <div className="gridbox-item">Day 4</div>
-                <div className="gridbox-item">Day 5</div>
-                <div className="gridbox-item">Day 6</div>
-                <div className="gridbox-item">Day 7</div>
+
 
             </div>
         </div>
