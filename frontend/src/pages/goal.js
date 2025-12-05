@@ -4,18 +4,19 @@ import "../styles.css"
 import Header from "./navbar";
 
 const Goals = () => {
-    const [currentGoal, setCurrentGoal] = useState("");
+    const [currentGoal, setCurrentGoal] = useState(0);
     const [newGoal, setNewGoal] = useState(0);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/returnUser?userId=john_doe") // replace with actual user ID logic
-        .then((res) => res.json())
-        .then((data) => setCurrentGoal(data.dailyGoal ?? ""))
-        .catch((err) => console.error("Error fetching goal:", err));
+      axios.get(`http://localhost:4000/api/returnUser?userId=john_doe`) // replace with actual user ID logic
+       .then((response) => {
+          setCurrentGoal(response.data.dailyGoal ?? 0);
+       })
+       .catch((err) => console.error("Error fetching goal:", err));
     }, []);
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (newGoal.trim() === "") {
             setMessage("Goal cannot be empty");
@@ -30,20 +31,16 @@ const Goals = () => {
             return;
         }
         else {
-          fetch("http://localhost:4000/api/setGoal", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ userId: "john_doe",  goal: newGoal }), // replace with actual user ID logic
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              console.log("Goal set successfully:", data);
-              setCurrentGoal(newGoal);
-              setNewGoal("");
-          })
-          .catch((err) => console.error("Error setting goal:", err));
+          try {
+            const body = { userId: "john_doe", goal: newGoal }; // replace with actual user ID logic
+            const response = await axios.post("http://localhost:4000/api/setGoal", body);
+            console.log("Server response:", response.data);
+          } catch (error) {
+            console.error("Error setting goal:", error);
+          }
+          setCurrentGoal(newGoal);
+          setNewGoal("");
+          setMessage("Goal updated successfully");
         }
     };
 

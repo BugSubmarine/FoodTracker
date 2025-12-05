@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -10,16 +11,17 @@ const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:4000/api/returnUser?userId=${username}`)
-        .then((res) => res.json())
-        .then((data) => {
-            if (data && data.password) {
-                setStoredUsername(data.username);
+        axios.get(`http://localhost:4000/api/returnUser?userId=${username}`)
+        .then((response) => {
+            if (response.data && response.data.username) {
+                setStoredUsername(response.data.username);
             } else {
                 setStoredUsername(null);
             }
         })
-        .catch((err) => console.error("Error fetching username:", err));
+        .catch((err) => {
+            console.error("Error fetching username:", err);
+        });
     }, [username]);
 
     const handleSubmit = async (e) => {
@@ -47,12 +49,9 @@ const Register = () => {
             console.log("Registering user:", newUser);
 
             try {
-                fetch("http://localhost:4000/api/setUser", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(newUser)
-                })
-                .then((res) => res.json())
+
+                const response = await axios.post("http://localhost:4000/api/setUser", newUser);
+                console.log("Server response:", response.data);
 
                 setUsername("");
                 setInputPassword("");

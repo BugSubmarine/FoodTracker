@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -9,11 +10,10 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:4000/api/returnUser?userId=${username}`)
-        .then((res) => res.json())
-        .then((data) => {
-            if (data && data.password) {
-                setStoredPassword(data.password);
+        axios.get(`http://localhost:4000/api/returnUser?userId=${username}`)
+        .then((response) => {
+            if (response.data && response.data.password) {
+                setStoredPassword(response.data.password);
             } else {
                 setStoredPassword(null);
             }

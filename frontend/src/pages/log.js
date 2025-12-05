@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css"
+import axios from "axios";
 import Header from "./navbar";
 
 const Log = () => {
@@ -9,18 +10,14 @@ const Log = () => {
     const [logs, setLogs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/returnMeals")
-        .then((res) => res.json())
-        .then((data) => {
-          setMealOptions(data);
-        })
+      axios.get("http://localhost:4000/api/returnMeals")
+        .then((response) => setMealOptions(response.data))
         .catch((err) => console.error("Error fetching meals:", err));
     }, []);
 
     const fetchLogs = () => {
-        fetch("http://localhost:4000/api/returnTracker?userId=john_doe") // replace with actual user ID logic
-        .then((res) => res.json())
-        .then((data) => setLogs(Array.isArray(data) ? data : []))
+      axios.get("http://localhost:4000/api/returnTracker?userId=john_doe") // replace with actual user ID logic
+        .then((response) => setLogs(Array.isArray(response.data) ? response.data : []))
         .catch((err) => console.error("Error fetching logs:", err));
     };
 
@@ -40,15 +37,9 @@ const Log = () => {
         console.log("Submitting new tracker:", newTracker);
 
         try {
-          fetch("http://localhost:4000/api/setTracker", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(newTracker)
-          })
-          .then((res) => res.json())
-          .then(() => {
-            fetchLogs();
-          })
+          const response = await axios.post("http://localhost:4000/api/setTracker", newTracker);
+          console.log("Server response:", response.data);
+          fetchLogs();
 
           setSelectedMeal("");
           setDate("");
@@ -60,8 +51,9 @@ const Log = () => {
 
     const handleDelete = async (logId) => {
       try {
-        await fetch(`http://localhost:4000/api/deleteTracker/${logId}`, {
-          method: "DELETE",
+        await axios.delete(`http://localhost:4000/api/deleteTracker/${logId}`)
+        .then((response) => {
+          console.log("Delete response:", response.data);
         });
         fetchLogs();
       } catch (err) {
