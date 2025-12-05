@@ -3,7 +3,7 @@ import "../styles.css"
 import axios from "axios";
 import Header from "./navbar";
 
-const Log = () => {
+const Log = ({username}) => {
     const [mealOptions, setMealOptions] = useState([]);
     const [selectedMeal, setSelectedMeal] = useState("");
     const [date, setDate] = useState("");
@@ -16,7 +16,7 @@ const Log = () => {
     }, []);
 
     const fetchLogs = () => {
-      axios.get("http://localhost:4000/api/returnTracker?userId=john_doe") // replace with actual user ID logic
+      axios.get(`http://localhost:4000/api/returnTracker?userId=${username}`) // replace with actual user ID logic
         .then((response) => setLogs(Array.isArray(response.data) ? response.data : []))
         .catch((err) => console.error("Error fetching logs:", err));
     };
@@ -27,7 +27,7 @@ const Log = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const userId = "john_doe"; // Replace with actual user ID logic
+        const userId = username; // Replace with actual user ID logic
         const newTracker = {
           userId: userId, 
           meal: selectedMeal,

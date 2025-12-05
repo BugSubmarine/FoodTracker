@@ -3,13 +3,13 @@ import axios from "axios";
 import "../styles.css"
 import Header from "./navbar";
 
-const Goals = () => {
+const Goals = ({username}) => {
     const [currentGoal, setCurrentGoal] = useState(0);
     const [newGoal, setNewGoal] = useState(0);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-      axios.get(`http://localhost:4000/api/returnUser?userId=john_doe`) // replace with actual user ID logic
+      axios.get(`http://localhost:4000/api/returnUser?userId=${username}`) // replace with actual user ID logic
        .then((response) => {
           setCurrentGoal(response.data.dailyGoal ?? 0);
        })
@@ -32,7 +32,7 @@ const Goals = () => {
         }
         else {
           try {
-            const body = { userId: "john_doe", goal: newGoal }; // replace with actual user ID logic
+            const body = { userId: username, goal: newGoal }; // replace with actual user ID logic
             const response = await axios.post("http://localhost:4000/api/setGoal", body);
             console.log("Server response:", response.data);
           } catch (error) {

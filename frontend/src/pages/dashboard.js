@@ -1,6 +1,6 @@
 import "../styles.css"
 import Header from "./navbar";
-const Dashboard = () => {
+const Dashboard = ({username}) => {
     return (
         <div className="dashboard">
             <Header/>
