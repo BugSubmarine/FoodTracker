@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-    const [username, setUsername] = useState("");
+const Login = ({ setUsername }) => {
+    const [inputUsername, setInputUsername] = useState("");
     const [inputPassword, setInputPassword] = useState("");
     const [storedPassword, setStoredPassword] = useState("");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/returnUser?userId=${username}`)
+        axios.get(`http://localhost:4000/api/returnUser?userId=${inputUsername}`)
         .then((response) => {
             if (response.data && response.data.password) {
                 setStoredPassword(response.data.password);
@@ -19,12 +19,12 @@ const Login = () => {
             }
         })
         .catch((err) => console.error("Error fetching password:", err));
-    }, [username]);
+    }, [inputUsername]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (username === "") {
+        if (inputUsername === "") {
             setMessage("Username cannot be empty");
             return;
         }
@@ -37,6 +37,7 @@ const Login = () => {
             return;
         }
         else if (inputPassword === storedPassword) {
+            setUsername(inputUsername);
             navigate("/dashboard");
         } else {
             setMessage("Incorrect password");
@@ -50,8 +51,8 @@ const Login = () => {
         <label>
           Username: 
             <input type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={inputUsername}
+            onChange={(e) => setInputUsername(e.target.value)}
           />
         </label>
         <br />
