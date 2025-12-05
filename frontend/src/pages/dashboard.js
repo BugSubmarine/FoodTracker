@@ -1,18 +1,40 @@
 import "../styles.css"
 import Header from "./navbar";
-const Dashboard = () => {
-    const Calendar = document.getElementById('Calendar');
-    for (let i = 0; i<31; i++){
-        const day = document.createElement('div');
-        const dayNumber = document.createElement('p');
-        day.className = 'gridbox-item';
-        dayNumber= `Day ${i}`;
-        circle.classList.add('1');
-        circleHolder.appendChild(Calendar);
-    }
+import React, { useRef, useEffect } from 'react';
+
 
 const Dashboard = ({username}) => {
+    const Calendar = useRef(null);
+    let j = 0;
+    const now = new Date();
+
+    useEffect(() => {
+
+        if (j == 0){
+
+        if (Calendar.current) {
+            // Create the new DOM element
+
+            for (let i = 1; i<=31; i++){
+            const day = document.createElement('div');
+            day.className = 'gridbox-item';
+            day.innerHTML = `Day ${i}`;
+            // const dayNumber = document.createElement('p');
+            // dayNumber.textContent =  `Day ${i}`;
+            // day.appendChild(dayNumber);
+
+            // Append the new element to the parent
+            Calendar.current.appendChild(day);
+            }
+
+        }
+        j++;
+    }
+
+    }, []);
+
     return (
+        
         <div className="dashboard">
             <Header/>
             <br/>
@@ -31,10 +53,11 @@ const Dashboard = ({username}) => {
                     <h5>Friday</h5>
                     <h5>Saturday</h5>
                 </div>
+                
 
-            <div className="gridbox-container" id="Calendar">
+            <div className="gridbox-container" id="Calendar" ref={Calendar}>
             {/* TO DO WORK ON MAKING THIS AN ARRAY OF DAYS */}
-                <div className="gridbox-item">Day 1</div>
+                {/* <div className="gridbox-item">Day 1</div> */}
 
 
             </div>
