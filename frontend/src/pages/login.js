@@ -45,14 +45,15 @@ const Login = ({ setUsername }) => {
     };
 
     return (
-        <div className="login">
-        <h2>Login</h2>
+         <div className="login">
+        <h2>Food Tracker App</h2>
+        <h3>Login</h3>
         <form onSubmit={handleSubmit}>
         <label>
           Username: 
             <input type="text"
-            value={inputUsername}
-            onChange={(e) => setInputUsername(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </label>
         <br />
@@ -66,7 +67,6 @@ const Login = ({ setUsername }) => {
         </label>
         <br />
         <button type="submit">Log In</button>
-        <button type="button" onClick={() => navigate("/register")}>Register</button>
       </form>
       {message && <p>{message}</p>}
         </div>
