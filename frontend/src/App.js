@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard";
 import NotFound from "./pages/notFound";
 import Goals from "./pages/goal";
 import Register from "./pages/register";
+import Layout from "./layout";
 import { useState } from "react";
 
 function App() {
@@ -14,13 +15,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login setUsername={setUsername} />} />
-          <Route path="/login" element={<Login setUsername={setUsername} />} />
-          <Route path="/log" element={<Log username={username} />} />
-          <Route path="/dashboard" element={<Dashboard username={username} />} />
-          <Route path="/goal" element={<Goals username={username} />} />
-          <Route path="/register" element={<Register setUsername={setUsername} />} />
-          <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Login setUsername={setUsername} />} />
+        <Route path="/login" element={<Login setUsername={setUsername} />} />
+        <Route path="/register" element={<Register setUsername={setUsername} />} />
+          <Route path="/" element={<Layout/>}>
+            <Route path="/log" element={<Log username={username} />} />
+            <Route path="/dashboard" element={<Dashboard username={username} />} />
+            <Route path="/goal" element={<Goals username={username} />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </div>

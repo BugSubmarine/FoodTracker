@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles.css"
-import Header from "./navbar";
 
 const Goals = ({username}) => {
     const [currentGoal, setCurrentGoal] = useState(0);
@@ -46,9 +45,6 @@ const Goals = ({username}) => {
 
     return (
     <div className="log-page">
-      <Header />
-      <br />
-      <br />
       <h2>Set Your Goal</h2>
       <div>Current goal: {currentGoal}</div>
       <form onSubmit={handleSubmit}>

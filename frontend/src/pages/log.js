@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css"
 import axios from "axios";
-import Header from "./navbar";
 
 const Log = ({username}) => {
     const [mealOptions, setMealOptions] = useState([]);
@@ -63,9 +62,6 @@ const Log = ({username}) => {
 
     return (
     <div className="log-page">
-      <Header />
-      <br />
-      <br />
       <h2>Log a Meal for Yourself</h2>
       <form onSubmit={handleSubmit}>
         <label>

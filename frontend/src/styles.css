@@ -28,7 +28,7 @@ option {
 }
 
 body {
-    margin-top: 30px;
+    margin-top: 60px;
     background-color: rgb(62, 66, 71);
 }
 
@@ -40,21 +40,26 @@ body {
 /* Navbar styling */
 
 .header {
+    
     color: rgb(74, 253, 86);
     background-color: rgb(19, 22, 26);
     position: fixed;
+    padding: 0px 10%;
     width: 100%;
     top: 0px;
 }
 
 .flex-container {
+
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 60px;
-    max-width: 1200px;
+    width: 100%;
+    z-index: 10;
     padding: 0 30px;
-    margin: 0 auto;
+    box-sizing: border-box;
+    /* margin: 0 auto; */
 }
 .logo_img {
     width: 150px;
