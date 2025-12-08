@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 const apiUrl = "http://localhost:4000/";
 
 const Login = ({ setUsername }) => {
@@ -66,6 +67,7 @@ const Login = ({ setUsername }) => {
             onChange={(e) => setInputPassword(e.target.value)}
           />
         </label>
+        <Link to="/register">Create Account</Link>
         <br />
         <button type="submit">Log In</button>
       </form>
