@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const apiUrl = "http://localhost:4000/";
 
 const Register = ({ setUsername }) => {
     const [inputUsername, setInputUsername] = useState("");
@@ -11,7 +12,7 @@ const Register = ({ setUsername }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/returnUser?userId=${inputUsername}`)
+        axios.get(`${apiUrl}api/returnUser?userId=${inputUsername}`)
         .then((response) => {
             if (response.data && response.data.username) {
                 setStoredUsername(response.data.username);
@@ -50,7 +51,7 @@ const Register = ({ setUsername }) => {
 
             try {
 
-                const response = await axios.post("http://localhost:4000/api/setUser", newUser);
+                const response = await axios.post(`${apiUrl}api/setUser`, newUser);
                 console.log("Server response:", response.data);
 
                 setUsername(inputUsername);

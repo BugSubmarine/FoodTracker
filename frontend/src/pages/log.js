@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css"
 import axios from "axios";
+const apiUrl = "http://localhost:4000/";
 
 const Log = ({username}) => {
     const [mealOptions, setMealOptions] = useState([]);
@@ -9,13 +10,13 @@ const Log = ({username}) => {
     const [logs, setLogs] = useState([]);
 
     useEffect(() => {
-      axios.get("http://localhost:4000/api/returnMeals")
+      axios.get(`${apiUrl}api/returnMeals`)
         .then((response) => setMealOptions(response.data))
         .catch((err) => console.error("Error fetching meals:", err));
     }, []);
 
     const fetchLogs = () => {
-      axios.get(`http://localhost:4000/api/returnTracker?userId=${username}`) // replace with actual user ID logic
+      axios.get(`${apiUrl}api/returnTracker?userId=${username}`) 
         .then((response) => setLogs(Array.isArray(response.data) ? response.data : []))
         .catch((err) => console.error("Error fetching logs:", err));
     };
@@ -26,7 +27,7 @@ const Log = ({username}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const userId = username; // Replace with actual user ID logic
+        const userId = username; 
         const newTracker = {
           userId: userId, 
           meal: selectedMeal,
@@ -36,7 +37,7 @@ const Log = ({username}) => {
         console.log("Submitting new tracker:", newTracker);
 
         try {
-          const response = await axios.post("http://localhost:4000/api/setTracker", newTracker);
+          const response = await axios.post(`${apiUrl}api/setTracker`, newTracker);
           console.log("Server response:", response.data);
           fetchLogs();
 
@@ -50,7 +51,7 @@ const Log = ({username}) => {
 
     const handleDelete = async (logId) => {
       try {
-        await axios.delete(`http://localhost:4000/api/deleteTracker/${logId}`)
+        await axios.delete(`${apiUrl}api/deleteTracker/${logId}`)
         .then((response) => {
           console.log("Delete response:", response.data);
         });

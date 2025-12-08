@@ -1,12 +1,13 @@
 import "../styles.css"
 import React, { useRef, useEffect } from 'react';
+const apiUrl = "http://localhost:4000/";
 
 
 const Dashboard = ({username}) => {
     const [byDate, setByDate] = React.useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/api/returnByDate?userId=${username}`) 
+        fetch(`${apiUrl}api/returnByDate?userId=${username}`) 
         .then(response => response.json())
         .then(data => setByDate(data))
         .catch(error => console.error("Error fetching byDate data:", error));        

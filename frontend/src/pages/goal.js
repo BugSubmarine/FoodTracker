@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles.css"
+import "../styles.css";
+const apiUrl = "http://localhost:4000/";
 
 const Goals = ({username}) => {
     const [currentGoal, setCurrentGoal] = useState(0);
@@ -8,7 +9,7 @@ const Goals = ({username}) => {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-      axios.get(`http://localhost:4000/api/returnUser?userId=${username}`) // replace with actual user ID logic
+      axios.get(`${apiUrl}api/returnUser?userId=${username}`) // replace with actual user ID logic
        .then((response) => {
           setCurrentGoal(response.data.dailyGoal ?? 0);
        })
@@ -32,7 +33,7 @@ const Goals = ({username}) => {
         else {
           try {
             const body = { userId: username, goal: newGoal }; // replace with actual user ID logic
-            const response = await axios.post("http://localhost:4000/api/setGoal", body);
+            const response = await axios.post(`${apiUrl}api/setGoal`, body);
             console.log("Server response:", response.data);
           } catch (error) {
             console.error("Error setting goal:", error);
