@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 const apiUrl = "http://localhost:4000/";
 
 const Register = ({ setUsername }) => {
@@ -70,7 +71,7 @@ const Register = ({ setUsername }) => {
 
     return (
         <div className="register">
-        <h2>Register</h2>
+        <h2>Register New User</h2>
         <form onSubmit={handleSubmit}>
         <label>
           Username: 
@@ -98,9 +99,14 @@ const Register = ({ setUsername }) => {
           />
         </label>
         <br />
+        <Link to="/login">Already have an account? Log In.</Link>
+        <br />
         <button type="submit">Register</button>
       </form>
+      <form>
       {message && <p>{message}</p>}
+      </form>
+
         </div>
     )
 };
