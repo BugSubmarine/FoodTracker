@@ -14,15 +14,15 @@ const Goals = ({username}) => {
           setCurrentGoal(response.data.dailyGoal ?? 0);
        })
        .catch((err) => console.error("Error fetching goal:", err));
-    }, []);
+    }, [username]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (newGoal.trim() === "") {
+        if (newGoal === "") {
             setMessage("Goal cannot be empty");
             return;
         }
-        else if (newGoal == currentGoal) {
+        else if (newGoal === currentGoal) {
             setMessage("New goal must be different from current goal");
             return;
         }
@@ -54,7 +54,7 @@ const Goals = ({username}) => {
           <input
             type="number"
             value={newGoal}
-            onChange={(e) => setNewGoal(e.target.value)}
+            onChange={(e) => setNewGoal(e.target.value === "" ? "" : Number(e.target.value))}
           >
             </input>
         </label>
