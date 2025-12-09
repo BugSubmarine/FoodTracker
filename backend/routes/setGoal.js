@@ -5,7 +5,6 @@ const User = require("../models/user");
 router.post("/", async (req, res) => {
   try {
     const {userId, goal} = req.body;
-    console.log(req.body);
     
     await User.updateOne(
     { username: userId },

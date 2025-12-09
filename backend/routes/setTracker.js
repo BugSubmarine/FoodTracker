@@ -5,7 +5,6 @@ const Tracker = require("../models/tracker");
 router.post("/", async (req, res) => {
   try {
     const {userId, meal, date} = req.body;
-    console.log(req.body);
     
     const newLog = new Tracker({
       username: userId,
