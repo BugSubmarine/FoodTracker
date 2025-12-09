@@ -67,8 +67,9 @@ const Login = ({ setUsername }) => {
             onChange={(e) => setInputPassword(e.target.value)}
           />
         </label>
-        <Link to="/register">Create Account</Link>
         <br />
+        <Link to="/register">Create Account</Link>
+        <br /> <br />
         <button type="submit">Log In</button>
       </form>
       {message && <p>{message}</p>}

@@ -22,7 +22,7 @@ const Goals = ({username}) => {
             setMessage("Goal cannot be empty");
             return;
         }
-        else if (newGoal === currentGoal) {
+        else if (newGoal == currentGoal) {
             setMessage("New goal must be different from current goal");
             return;
         }
