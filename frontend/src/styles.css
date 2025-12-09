@@ -32,10 +32,6 @@ body {
     background-color: rgb(62, 66, 71);
 }
 
-.dashboard h2 {
-    color: rgb(74, 253, 86);
-    text-shadow: 2px 1px 5px rgb(0, 0, 0);
-}
 
 /* Navbar styling */
 
@@ -44,7 +40,7 @@ body {
     color: rgb(74, 253, 86);
     background-color: rgb(19, 22, 26);
     position: fixed;
-    padding: 0px 10%;
+    padding: 0px 5%;
     width: 100%;
     top: 0px;
 }
@@ -53,19 +49,14 @@ body {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-height: 60px;
     width: 100%;
     z-index: 10;
-    padding: 0 30px;
+    padding: 0 20px;
     box-sizing: border-box;
     /* margin: 0 auto; */
 }
-.logo_img {
-    width: 150px;
-    display: block;
-}
-
 
 .nav_list {
     display: flex;
@@ -118,15 +109,31 @@ body {
     background-color: rgb(137, 218, 250);
 }
 
+/* Dash Board Styles*/
 /* Calender Grid styles */
 
+.dashboard h2 {
+    color: rgb(74, 253, 86);
+    text-shadow: 2px 1px 5px rgb(0, 0, 0);
+    text-align: center;
+}
+
+.dashboard h3{
+    text-align: center;
+}
 .day_names {
     color: rgb(74, 253, 86);
-
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.day_names h5 {
+    border: 1px solid rgb(112, 246, 130);
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0px;
+
 }
 .gridbox-container {
     display: grid;
@@ -138,6 +145,7 @@ body {
     margin: 1px;
 
     text-align: center;
+    background-color: rgba(217, 252, 207, 0.1);
     border: 1px solid rgb(156, 179, 154);
     border-radius: 10px;
 }

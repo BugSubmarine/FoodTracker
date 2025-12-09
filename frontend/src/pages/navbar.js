@@ -8,6 +8,9 @@ const Header = () => {
             <div className="flex-container">
                 <nav className="nav">
                     <ul className="nav_list">
+                    <li className="nav_item">
+                        <h2>Food Tracker</h2>
+                    </li>
                         <li className="nav_item">
                             <Link className="nav_link" to="/log">Log</Link>
                         </li>

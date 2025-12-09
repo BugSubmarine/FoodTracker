@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles.css";
+import "../goal.css";
 const apiUrl = "http://localhost:4000/";
 
 const Goals = ({username}) => {
@@ -47,20 +48,23 @@ const Goals = ({username}) => {
     return (
     <div className="log-page">
       <h2>Set Your Goal</h2>
-      <div>Current goal: {currentGoal}</div>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <h3>Current goal: {currentGoal}</h3>
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          <label>
           Goal:
-          <input
-            type="number"
-            value={newGoal}
-            onChange={(e) => setNewGoal(e.target.value === "" ? "" : Number(e.target.value))}
-          >
-            </input>
-        </label>
-        <button type="submit">Set Goal</button>
-      </form>
-      {message && <p>{message}</p>}
+            <input
+              type="number"
+              value={newGoal}
+              onChange={(e) => setNewGoal(e.target.value === "" ? "" : Number(e.target.value))}
+            >
+              </input>
+          </label>
+          <button type="submit">Set Goal</button>
+        </form>
+        {message && <p>{message}</p>}
+      </div>
+
     </div>
     )
 };

@@ -23,8 +23,10 @@ const Dashboard = ({username}) => {
 
     const Calendar = useRef(null);
     let j = 0;
+    const formatter = new Intl.DateTimeFormat('default', { month: 'long' });
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
+    const month1 = formatter.format(month);
 
     useEffect(() => {
 
@@ -95,8 +97,8 @@ const Dashboard = ({username}) => {
 
             <h2>Dashboard</h2>
             {/* Option to switch through years / months */}
-            <h3>Year: 2025</h3>
-            <h3>Month: December</h3>
+            <h3>Month: {month1}</h3>
+            <h3>Year: {year}</h3>
             <div className="day_names">
                     <h5> Sunday</h5>
                     <h5>Monday</h5>
@@ -105,7 +107,7 @@ const Dashboard = ({username}) => {
                     <h5>Thursday</h5>
                     <h5>Friday</h5>
                     <h5>Saturday</h5>
-                </div>
+            </div>
                 
 
             <div className="gridbox-container" id="Calendar" ref={Calendar}>

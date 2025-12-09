@@ -1,0 +1,32 @@
+/* Goal styling */
+.log-page {
+    background-color: rgba(156, 170, 156, 0.2);
+    border: 3px solid rgb(109, 193, 114);
+    border-radius: 10px;
+    margin: 10%;
+    margin-top: 20%;
+}
+.log-page h2{
+    color: rgb(74, 253, 86);
+    text-shadow: 2px 1px 5px rgb(0, 0, 0);
+    text-align: center;
+    margin: 10px;
+}
+
+.log-page h3{
+    text-align: center;
+    margin: 5px;
+}
+.log-page .form{
+    padding: 10px;
+    text-align: center;
+}
+.log-page .form label{
+    color: rgb(74, 253, 86);
+    padding: 10px;
+}
+.log-page .form button{
+    all: unset;
+    cursor: pointer;
+    background-color: rgba(0, 255, 0, 0.5);
+}
