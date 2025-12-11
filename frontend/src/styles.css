@@ -121,6 +121,7 @@ body {
 .dashboard h3{
     text-align: center;
 }
+
 .day_names {
     color: rgb(74, 253, 86);
     text-align: center;
@@ -128,6 +129,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
+
 .day_names h5 {
     border: 1px solid rgb(112, 246, 130);
     border-radius: 10px;
@@ -135,12 +137,10 @@ body {
     margin: 0px;
 }
 
-.goal {
-    color: greenyellow;
-}
 .metGoal {
     color: greenyellow;
 }
+
 .notGoal {
     color: rgb(250, 63, 63);
 }

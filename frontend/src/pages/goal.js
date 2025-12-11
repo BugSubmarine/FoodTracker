@@ -15,7 +15,7 @@ const Goals = ({username}) => {
           setCurrentGoal(response.data.dailyGoal ?? 0);
        })
        .catch((err) => console.error("Error fetching goal:", err));
-    }, [username]);
+    }, [username, currentGoal]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,6 +48,8 @@ const Goals = ({username}) => {
     return (
     <div className="log-page">
       <h2>Set Your Goal</h2>
+      <h3>Current calorie goal: {currentGoal}</h3>
+      
       <div className="form">
         <form onSubmit={handleSubmit}>
           <label>
